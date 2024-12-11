@@ -1,5 +1,7 @@
 # HydroModelTools.jl
 
+[![英文文档](https://img.shields.io/badge/docs-dev-blue.svg)](https://chooron.github.io/HydroModelTools.jl/dev/)
+
 The HydroModelTools.jl package provides a suite of tools for working with hydrological models, including ODE problem solvers and parameters optimizers. The package is built on the SciML ecosystem and serves as the support tools for the [HydroModels.jl](https://github.com/chooron/HydroModels.jl) package.
 
 **Note**: If you don't use HydroModels.jl, we suggest using DifferentialEquations.jl and Optimization.jl directly.
