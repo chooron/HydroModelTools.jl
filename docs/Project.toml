@@ -1,0 +1,3 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+HydroModels = "7e3cde01-c141-467b-bff6-5350a0af19fc"
