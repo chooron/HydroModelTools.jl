@@ -8,9 +8,9 @@ The HydroModelTools.jl package provides a suite of tools for working with hydrol
 
 The HydroModelTools.jl package provides a suite of ODE problem solvers which are wrappers of the [DifferentialEquations.jl](https://github.com/SciML/DifferentialEquations.jl) package. For continuous and discrete problems, the package provides `ODESolver` and `DiscreteSolver` types, and provides the sensitivity analysis using [SciMLSensitivity.jl](https://github.com/SciML/SciMLSensitivity.jl).
 
-## Parameter Optimizers
+## Parameter Optimizers 
 
-The HydroModelTools.jl package provides a suite of parameter optimizers which are wrappers of the [Optimization.jl](https://github.com/JuliaOpt/Optimization.jl) package. For black box optimization, the package provides `BatchOptimizer` type, and for gradient optimization, the package provides `GradOptimizer` type.
+The HydroModelTools.jl package provides a suite of parameter optimizers which are wrappers of the [Optimization.jl](https://github.com/SciML/Optimization.jl) package. For black box optimization, the package provides `BatchOptimizer` type, and for gradient optimization, the package provides `GradOptimizer` type.
 
 ## Installation
 
