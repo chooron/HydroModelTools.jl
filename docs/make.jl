@@ -1,6 +1,7 @@
 push!(LOAD_PATH, "../src/")
 using Documenter
 using HydroModels
+using HydroModelTools
 
 makedocs(
     sitename = "HydroModelTools.jl",
@@ -14,7 +15,7 @@ makedocs(
         sidebar_sitename = true
     ),
     # 配置模块
-    modules = [HydroModels],
+    modules = [HydroModelTools],
     clean = true,
     doctest = false,
     linkcheck = true,
