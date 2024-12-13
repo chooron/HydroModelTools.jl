@@ -26,6 +26,11 @@ const version = VersionNumber(TOML.parsefile(joinpath(@__DIR__, "..", "Project.t
 abstract type AbstractHydroSolver end
 abstract type AbstractHydroOptimizer end
 
+include("utils/ca.jl")
+export update_ca, merge_ca
+include("utils/callback.jl")
+export get_callback_func, get_batch_callback_func
+
 include("optimizer.jl")
 export BatchOptimizer, HydroOptimizer, GradOptimizer
 

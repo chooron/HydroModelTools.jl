@@ -9,7 +9,7 @@ makedocs(
     format = Documenter.HTML(
         # 启用 pretty URLs，移除 .html 后缀
         # 设置文档的规范 URL
-        canonical = "https://chooron.github.io/HydroModelTools.jl/dev",
+        canonical = "https://chooron.github.io/HydroModelTools.jl/dev/",
         # 配置侧边栏
         collapselevel = 2,
         sidebar_sitename = true

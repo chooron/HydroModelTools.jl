@@ -79,7 +79,7 @@ function (opt::HydroOptimizer{C,S})(
 ) where {C,S}
     lb = get(kwargs, :lb, zeros(length(tunable_pas)))
     ub = get(kwargs, :ub, ones(length(tunable_pas)) .* 100)
-    run_kwargs = get(kwargs, :run_kwargs, (convert_to_ntp=true,))
+    run_kwargs = get(kwargs, :run_kwargs, NamedTuple())
     return_loss_df = get(kwargs, :return_loss_df, false)
 
     loss_recorder = NamedTuple[]
@@ -109,7 +109,7 @@ function (opt::GradOptimizer{C,S})(
     config::Vector=fill(NamedTuple(), length(input)),
     kwargs...
 ) where {C,S}
-    run_kwargs = get(kwargs, :run_kwargs, (convert_to_ntp=true,))
+    run_kwargs = get(kwargs, :run_kwargs, NamedTuple())
     return_loss_df = get(kwargs, :return_loss_df, false)
     loss_recorder = NamedTuple[]
     callback_func = opt.callback_func(loss_recorder)
@@ -142,22 +142,24 @@ function (opt::BatchOptimizer{C,S})(
     callback_func = opt.callback_func(length(input), loss_recorder)
     default_model_pas = ComponentArray(merge_recursive(NamedTuple(tunable_pas), NamedTuple(const_pas)))
 
-    run_kwargs = fill(get(kwargs, :run_kwargs, (convert_to_ntp=true,)), length(input))
-    run_kwargs[1] = (convert_to_ntp=false, reset_states=true)
+    run_kwargs = vcat([merge(get(kwargs, :run_kwargs, NamedTuple()), (reset_states=true,))],
+        fill(get(kwargs, :run_kwargs, NamedTuple()), length(input) - 1))
     return_loss_df = get(kwargs, :return_loss_df, false)
 
     tunable_axes = getaxes(tunable_pas)
-    prob_args = (tunable_axes, default_model_pas)
-
+    
     #* prepare the batch data
     train_batch = [(input_i, target_i, cfg_i, run_kw_i) for (input_i, target_i, cfg_i, run_kw_i) in zip(input, target, config, run_kwargs)]
     #* Construct default model parameters based on tunbale parameters and constant parameters for subsequent merging
     default_model_pas = ComponentArray(merge_recursive(NamedTuple(tunable_pas), NamedTuple(const_pas)))
 
+    prob_args = (tunable_axes, default_model_pas, ncycle(train_batch, opt.maxiters))
+    
     #* Constructing and solving optimization problems
     optf = Optimization.OptimizationFunction(opt.objective_func, opt.adtype)
     @info "The size of tunable parameters is $(length(tunable_pas))"
     optprob = Optimization.OptimizationProblem(optf, collect(tunable_pas), prob_args)
+    # TODO batch training is not supported for after Optimization.jl v0.4+
     sol = Optimization.solve(optprob, opt.solve_alg, ncycle(train_batch, opt.maxiters), callback=callback_func)
     #* Returns the optimized model parameters
     opt_pas = update_ca(default_model_pas, ComponentVector(sol.u, tunable_axes))

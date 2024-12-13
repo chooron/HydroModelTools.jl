@@ -3,22 +3,18 @@ using CSV
 using DataFrames
 using Lux
 using Test
-using ModelingToolkit
-using Symbolics
-using LuxCore
 using StableRNGs
 using ComponentArrays
 using DataInterpolations
 using OrdinaryDiffEq
 using Statistics
-using BenchmarkTools
-using Graphs
-using Plots
 using HydroModels
-using Test
+using HydroModelTools
+using SciMLSensitivity
+using OptimizationOptimisers
 
-
-@testset "HydroKit.jl" begin
-    include("run_optimize.jl")
+@testset "HydroModelTools.jl" begin
+    include("run_exphydro_optimize.jl")
+    include("run_m50_optimize.jl")
     include("run_solver.jl")
 end
