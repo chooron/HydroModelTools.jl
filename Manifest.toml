@@ -2,7 +2,7 @@
 
 julia_version = "1.11.2"
 manifest_format = "2.0"
-project_hash = "d43f367d7043a602c89a9d0302d599c6883f68e1"
+project_hash = "e043b2f3cde2f9d55d50f3bd54e57f7c7ea3579d"
 
 [[deps.ADTypes]]
 git-tree-sha1 = "e2478490447631aedba0823d4d7a80b2cc8cdb32"
@@ -807,7 +807,7 @@ version = "0.2.0"
 
 [[deps.HydroModelCore]]
 deps = ["ModelingToolkit", "Symbolics"]
-path = "E:\\JlCode\\HydroModelCore"
+git-tree-sha1 = "a143596a2d8b5b3bb072410844d5c83a4a772341"
 uuid = "57609f06-44cb-4626-8f6d-47ea844d0af1"
 version = "0.1.1"
 

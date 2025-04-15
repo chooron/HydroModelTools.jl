@@ -19,3 +19,9 @@ docs/site/
 
 .gitignore
 .gitattributes
+
+.vscode
+TODO.md
+tmp
+
+dev
