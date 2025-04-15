@@ -11,10 +11,15 @@ using Statistics
 using HydroModels
 using HydroModelTools
 using SciMLSensitivity
+using OptimizationBBO
 using OptimizationOptimisers
+using Pipe
 
-@testset "HydroModelTools.jl" begin
-    include("run_exphydro_optimize.jl")
-    include("run_m50_optimize.jl")
-    include("run_solver.jl")
+@testset "HydroModelTools.jl Solvers" begin
+    include("solvers/run_solvers.jl")
+end
+
+@testset "HydroModelTools.jl Optimizers" begin
+    include("optimizers/run_exphydro_optimize.jl")
+    # include("optimizers/run_m50_optimize.jl")
 end
