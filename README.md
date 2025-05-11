@@ -1,3 +1,5 @@
+**Note**: This package has been archived. The ODESolver interface has been merged into [HydroModels.jl](https://github.com/chooron/HydroModels.jl), and the parameter optimization function has been abandoned due to its lack of flexibility.
+
 # HydroModelTools.jl
 
 [![英文文档](https://img.shields.io/badge/docs-dev-blue.svg)](https://chooron.github.io/HydroModelTools.jl/dev/)
